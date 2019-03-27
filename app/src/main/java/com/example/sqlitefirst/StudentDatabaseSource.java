@@ -2,7 +2,10 @@ package com.example.sqlitefirst;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
 
 public class StudentDatabaseSource {
 
@@ -41,6 +44,30 @@ public class StudentDatabaseSource {
             return false;
 
 
+    }
+
+    public ArrayList<StudentModel> getAllStudent(){
+        this.open();
+
+        ArrayList<StudentModel> arrayList = new ArrayList<>();
+
+        Cursor cursor = sqLiteDatabase.query(studentDatabaseHelper.STUDENT_TABLE,null,null,null,null,null,null,null);
+
+        if(cursor.moveToFirst()){
+            do{
+                String name = cursor.getString(cursor.getColumnIndex(studentDatabaseHelper.COL_NAME));
+                // String name1 = cursor.getString(1);
+                int age = cursor.getInt(cursor.getColumnIndex(studentDatabaseHelper.COL_AGE));
+                // int age1 = cursor.getInt(2);
+                String address = cursor.getString(cursor.getColumnIndex(studentDatabaseHelper.COL_ADDRESS));
+
+                StudentModel studentModel = new StudentModel(name,age,address);
+                arrayList.add(studentModel);
+
+
+            }while ((cursor.moveToNext()));
+        }
+        return arrayList;
     }
 
 
