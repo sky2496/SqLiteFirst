@@ -10,7 +10,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     EditText etName, etAge, etAddress;
-    Button addBtn;
+    Button addBtn,showStudent;
     StudentDatabaseSource studentDatabaseSource;
 
     @Override
@@ -22,8 +22,10 @@ public class MainActivity extends AppCompatActivity {
         etAddress = findViewById(R.id.etAddress);
         etAge = findViewById(R.id.etAge);
         addBtn = findViewById(R.id.addStudent);
+        showStudent = findViewById(R.id.showStudent);
 
         studentDatabaseSource = new StudentDatabaseSource(this);
+
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
