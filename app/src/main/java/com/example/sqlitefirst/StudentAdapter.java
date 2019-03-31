@@ -17,7 +17,7 @@ public class StudentAdapter extends ArrayAdapter<StudentModel> {
     public StudentAdapter( Context context, ArrayList<StudentModel> arrayList) {
         super(context, R.layout.single_student_row);
         this.context = context;
-        arrayList = arrayList;
+        this.arrayList = arrayList;
 
     }
 
@@ -34,7 +34,7 @@ public class StudentAdapter extends ArrayAdapter<StudentModel> {
         TextView addressTV = v.findViewById(R.id.address);
 
         nameTV.setText(arrayList.get(position).getName());
-        ageTV.setText(arrayList.get(position).getAge());
+        ageTV.setText(String.valueOf(arrayList.get(position).getAge()));
         addressTV.setText(arrayList.get(position).getAddress());
 
         return v;

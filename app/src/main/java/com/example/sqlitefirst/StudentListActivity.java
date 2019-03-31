@@ -15,6 +15,11 @@ public class StudentListActivity extends Activity {
 
         listView = findViewById(R.id.ListView);
 
+        StudentDatabaseSource source = new StudentDatabaseSource(this);
+        StudentAdapter studentAdapter = new StudentAdapter(this,source.getAllStudent());
+
+        listView.setAdapter(studentAdapter);
+
 
     }
 }
