@@ -42,7 +42,24 @@ public class StudentDatabaseSource {
         }
         else
             return false;
+    }
 
+    public boolean updateStudent(StudentModel studentModel){
+        this.open();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(StudentDatabaseHelper.COL_NAME,studentModel.getName());
+        contentValues.put(StudentDatabaseHelper.COL_ADDRESS,studentModel.getAddress());
+        contentValues.put(StudentDatabaseHelper.COL_AGE,studentModel.getAge());
+
+        int updatedRow = sqLiteDatabase.update(StudentDatabaseHelper.STUDENT_TABLE,contentValues,studentDatabaseHelper.COL_ID+" =?",new String[]{String.valueOf(studentModel.getId()) });
+
+        this.close();
+        if(updatedRow>0){
+            return true;
+        }
+        else{
+            return false;
+        }
 
     }
 
@@ -60,8 +77,10 @@ public class StudentDatabaseSource {
                 int age = cursor.getInt(cursor.getColumnIndex(studentDatabaseHelper.COL_AGE));
                 // int age1 = cursor.getInt(2);
                 String address = cursor.getString(cursor.getColumnIndex(studentDatabaseHelper.COL_ADDRESS));
+                int id = cursor.getInt(cursor.getColumnIndex(studentDatabaseHelper.COL_ID));
 
-                StudentModel studentModel = new StudentModel(name,age,address);
+                StudentModel studentModel = new StudentModel(id,name,age,address);
+
                 arrayList.add(studentModel);
 
 

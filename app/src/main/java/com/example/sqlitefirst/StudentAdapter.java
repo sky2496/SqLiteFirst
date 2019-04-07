@@ -15,7 +15,7 @@ public class StudentAdapter extends ArrayAdapter<StudentModel> {
     Context context;
     ArrayList<StudentModel> arrayList;
     public StudentAdapter( Context context, ArrayList<StudentModel> arrayList) {
-        super(context, R.layout.single_student_row);
+        super(context, R.layout.single_student_row, arrayList);
         this.context = context;
         this.arrayList = arrayList;
 
