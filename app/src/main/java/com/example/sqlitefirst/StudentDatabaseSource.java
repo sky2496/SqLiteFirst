@@ -89,5 +89,19 @@ public class StudentDatabaseSource {
         return arrayList;
     }
 
+    public boolean deleteStudent(StudentModel model){
+        this.open();
+
+        // int deletedRow = sqLiteDatabase.delete(StudentDatabaseHelper.STUDENT_TABLE,studentDatabaseHelper.COL_ID + " =?",new String[]{String.valueOf(studentModel.getId())});
+
+        int deletedRow = sqLiteDatabase.delete(studentDatabaseHelper.STUDENT_TABLE,studentDatabaseHelper.COL_ID + " =?",new String[]{String.valueOf(model.getId())});
+
+        this.close();
+        if(deletedRow > 0){
+            return true;
+        }
+        else return false;
+    }
+
 
 }
